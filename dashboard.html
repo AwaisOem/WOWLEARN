@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="shortcut icon" href="./images/icons8-yellow-file-32.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" <title>
+    Dashboard | WOWLEARN</title>
+</head>
+
+<body>
+    <nav>
+        <div class="menu">
+            <div class="logo" href="#"><span>WOW</span>learn</div>
+            <a id="home_btn" onclick="home_click()">Dashboard</a>
+            <a id="lang_btn" onclick="language_click(this)">Languages <i class="fa-solid fa-caret-down"></i></a>
+            <a id="event_btn" onclick="event_click()">Events</a>
+            <a id="blog_btn" onclick="blog_click()">Blogs</a>
+        </div>
+        <div class="search">
+            <input type="search" name="" id="search" placeholder="Search...">
+            <button>
+                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='#252E38' width='24' height='24'>
+                    <path
+                        d="M10 18a7.952 7.952 0 0 0 4.897-1.688l4.396 4.396 1.414-1.414-4.396-4.396A7.952 7.952 0 0 0 18 10c0-4.411-3.589-8-8-8s-8 3.589-8 8 3.589 8 8 8zm0-14c3.309 0 6 2.691 6 6s-2.691 6-6 6-6-2.691-6-6 2.691-6 6-6z">
+                    </path>
+                </svg>
+            </button>
+        </div>
+        <div class="noti-prof">
+            <div class="noti">
+                <div id="noticount">1</div>
+                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'>
+                    <path
+                        d="M12 22a2.98 2.98 0 0 0 2.818-2H9.182A2.98 2.98 0 0 0 12 22zm7-7.414V10c0-3.217-2.185-5.927-5.145-6.742C13.562 2.52 12.846 2 12 2s-1.562.52-1.855 1.258C7.185 4.074 5 6.783 5 10v4.586l-1.707 1.707A.996.996 0 0 0 3 17v1a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-1a.996.996 0 0 0-.293-.707L19 14.586z">
+                    </path>
+                </svg>
+            </div>
+            <a onclick="ham_click(this)" id="hamburger"><i class="fa-solid fa-bars"></i></a>
+            <a class="barProf prof" onclick="prof_click(this)">
+                Awais Oem<i class="fa-solid fa-caret-down"></i>
+            </a>
+        </div>
+    </nav>
+    <div class="notifications">
+        <div id="noti-box">
+        </div>
+    </div>
+    <div class="prof-options">
+        <a onclick="changeName()">Change Name</a>
+        <a onclick="switchAccount()">Switch Account</a>
+        <a onclick="resetClick()">Reset progress</a>
+        <a onclick="resetAllClick()">Reset All</a>
+        <a onclick="deleteaccount()">Delete Account</a>
+    </div>
+    <div class="SideNav">
+        <div>
+            <a class="profInNav SideNavLinks" onclick="profInNav_click(this)">
+                <i class="fa-solid fa-caret-down"></i>
+            </a>
+            <div class="profInNav-options">
+                <a onclick="changeName()">Change Name</a>
+                <a onclick="switchAccount()">Switch Account</a>
+                <a onclick="resetClick()">Reset progress</a>
+                <a onclick="resetAllClick()">Reset All</a>
+                <a onclick="deleteaccount()">Delete Account</a>
+            </div>
+            <div class="searchInNav">
+                <input type="search" name="" id="search" placeholder="Search..." style="width: 80%;">
+                <button>
+                    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='#252E38' width='24' height='24'>
+                        <path
+                            d="M10 18a7.952 7.952 0 0 0 4.897-1.688l4.396 4.396 1.414-1.414-4.396-4.396A7.952 7.952 0 0 0 18 10c0-4.411-3.589-8-8-8s-8 3.589-8 8 3.589 8 8 8zm0-14c3.309 0 6 2.691 6 6s-2.691 6-6 6-6-2.691-6-6 2.691-6 6-6z">
+                        </path>
+                    </svg>
+                </button>
+            </div>
+            <a id="lang_btnInNav" class="SideNavLinks" onclick="langInNav_click(this)">Languages <i
+                    class="fa-solid fa-caret-down"></i></a>
+            <div class="langInNav-options">
+            </div>
+            <a id="home_btn" class="SideNavLinks" onclick="home_click()">Dashboard</a>
+            <a id="event_btn" class="SideNavLinks" onclick="event_click()">Events</a>
+            <a id="blog_btn" class="SideNavLinks" onclick="blog_click()">Blogs</a>
+        </div>
+    </div>
+    <div class="completed_popup" style="display: none">
+        <a onclick="close2()" style="display: flex"><i class="fa-solid fa-xmark"></i></a>
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAAFMUlEQVRoge2YW2wUVRzGv3OwSKhAoUVjIA360GjEso08mJQHxB0Igmk2aKBcGpSIyAPBahiwhKw4mCFQuRUUNApyawMFY+RiWqJGjTE2AR+MARN9kFBu3Uwh1q7d+X8+tLvd2Z1tC/Ri4n7JP5s5++3Z33fmnDNnF8gqq6yyyiqrrPpH+3ihKEzq3nyP1r5ShHBYA4AaeKy+aZ/7k03ApFInlcL8V9XUDj/fpLqXbYImgJMFTs78/0SADzp+tAmY8WuSdSuHP70g1Vd4dKmNJB+AuvsGA7An1UR/sF2K6WlUKE31TTxaYTPVB5QOaYBd0e8tgZigp9lRYCi5YcKhJRZcml4bHCUIDdkU2vH3txaBKk+jgiOuMipzpzXFmyZ8usSCYlXKxx1NZfxZcbBpSAJU//WNBYU0KEUxKnOfScA//OkiS6WGBBxCG80VB5uAIdiFttz+yhdeFAwzGX7/IgtIH3loMZorahO+QQ2w+fY5Cz4jCq298B+X+4aE0Ghe1g0PDGKATa0NvtNBSGN93swE1EMfzbdUCjwBR0OlwQODFOAd50tfeEClwftNG620LzwwCAHeds5aYCqUcqhcI5w3JwE1/sMXLUWfOyRi3FxR7wsPDHCAcOS0xTR4OEpghMcnwe+dZwEqfbche4QHBjDAhptfWPSZDkJtbEqCz39/Xvr0UnAA9AoPABoAwgzrdTdOFPVKFQ7rgppQr763rn9mx8StckWQKJeRDpEZHvg9IRuUKlKQVBFFzOgLPADo5dyb0369+DhFXVx77YSd0bl3ec64gp+PC3gxvyaU0bf22glbSFMoiBcpEVEM2g+WnU/A14RsCk0KkVQRN+YGb7xWfz5T/2kB8q6OPyTCkIhAhOaa5npfuHHRq4dACYEEKWb+zrI035rmeluEZmdfiYow5nrhd5Z1HsxIJFVERILOqs/7DA8A2qVb6lKQVGZl87E0OBKlyaMlpDl2e3eIyuZjtksxU/qKxIRBe8ILCaix28tsYerIS0TIO4bvDCCcK5QWzy0XMV+/UrfVE0Bic0m2kER3iZlnz962+kqtRRHPtBGKI4jNei8JfsyO5y1CTG8fdMRVs+4GHujahVZfPhwQ6kYA+R5opap3TVzwZvw6b9tzAcZ9BNgeQ0lxMaYESlK7dYQ0agrLEwtxzLY5Fpi+VQJitFae7tOCzRgAAFZePhzQgvQQUNW7Cxd6QkiMjYy6+SXFU1AcCKT26QDaAz+6erbvPq8U7gneEwAAVv5xOAAlaSEAVu+ZVJEIMXLjzKemBqZ8N7m4eESyKxaLRYcPHzatprCiG37L7PRzP+BoUUareW/wQNdzIK49jyy60MFY0KW0eBcj31jx+/7Emli8eGHo8Scnj0j2tEfbcebU6fsPHDlSHvc9sHmWJWRVyrpx3H6CBzI8iZf9dqBEa2kEMC7lrc1dr57fpv9Eo2g804jWtlYgR4Oq06eI1N+wEaEOtq07c1cL1k8ZjxJLL30S6AqRn8kDACRvnzt1li23nNHI6eEvHQWHikab2dAvIx9Xxm/cX/TSBRE32LnFushQjtKxGTdvOdM5DC0UQYZyGOt/eKAPh7mll/YFhL53wiFhHHxsRRMA5G4yMvoUtNG2vv/hgT6eRhde2h1QopLhHA2dgI8rNzw94Oru5wkBZ5gWo2391wMCD9zBcXrBLztLlNINAECKUfvEKt+FOHJjsEQgDQCgoY22DY39tmDvWeUXtxaEfq3pcVEDwKjw9IJR7z7bqy+rrLLKKqus/vf6F8N1ZVVAFxCRAAAAAElFTkSuQmCC">
+        <h1 data-lang></h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt, eum nesciunt! Distinctio molestias repellat, quam fuga adipisci suscipit voluptates doloremque amet eaque laboriosam.</p>
+    </div>
+    <div class="lang-options">
+    </div>
+    <div class="popup" id="welcome-popup">
+        <div>
+            <h2>Welcome To Wow<span>Learn</span></h2>
+            <button class="closebtn" id="close">
+                <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48">
+                    <path
+                        d="M12.45 37.65 10.35 35.55 21.9 24 10.35 12.45 12.45 10.35 24 21.9 35.55 10.35 37.65 12.45 26.1 24 37.65 35.55 35.55 37.65 24 26.1Z" />
+                </svg>
+            </button>
+        </div>
+        <p style="margin-top:30px;">Our motto is: ABC for University Students</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, expedita! Laudantium architecto quidem, eum
+            natus sed, vitae reiciendis quisquam necessitatibus incidunt asperiores est. Ipsam eius ipsum esse ut
+            commodi neque provident eveniet ipsa odio non, iure est quas maiores expedita similique, praesentium
+            adipisci quam quis pariatur quo consectetur corporis consequatur? Incidunt odit inventore eum porro ea
+            accusamus, officiis provident, eos quasi nam eius unde fuga similique magnam!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi voluptatum recusandae dolorum eos.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi voluptatum recusandae dolorum eos.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi voluptatum recusandae dolorum eos.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi voluptatum recusandae dolorum eos.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi voluptatum recusandae dolorum eos.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi voluptatum recusandae dolorum eos.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi voluptatum recusandae dolorum eos.</p>
+        <div style="display:flex;justify-content:space-between;padding: 0 50px;">
+            <p>Introduction</p>
+            <p>1/1</p>
+        </div>
+        <progress min="0" max="1" value="1" style="width: 87%;margin:0 50px;"></progress>
+        <div style="margin:10px 60px;"><span style="color:#F2BB13">Rewards: </span>unlock levels, <span
+                style="color:rgb(34, 177, 34)">+5XP</span></div>
+        <h5 style="color:rgb(34, 177, 34);margin:10px 60px;">Quest completed, Congradulations</h5>
+    </div>
+    <div class="popup" id="normal-popup">
+    </div>
+    <section>
+        <h1>Quest Map</h1>
+        <div id="mainborad">
+            <div class="progress">
+                <div class="level">
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+                            <path
+                                d="M11.219 3.375 8 7.399 4.781 3.375A1.002 1.002 0 0 0 3 4v15c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2V4a1.002 1.002 0 0 0-1.781-.625L16 7.399l-3.219-4.024c-.381-.474-1.181-.474-1.562 0zM5 19v-2h14.001v2H5zm10.219-9.375c.381.475 1.182.475 1.563 0L19 6.851 19.001 15H5V6.851l2.219 2.774c.381.475 1.182.475 1.563 0L12 5.601l3.219 4.024z">
+                            </path>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="stats">
+                            <div id="lvl1"></div>
+                            <div id="XP1"></div>
+                            <div></div>
+                        </div>
+                        <progress min="0" id="Progress1"></progress>
+                    </div>
+                </div>
+                <div class="level">
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+                            <path
+                                d="M12 22c3.859 0 7-3.141 7-7s-3.141-7-7-7c-3.86 0-7 3.141-7 7s3.14 7 7 7zm0-12c2.757 0 5 2.243 5 5s-2.243 5-5 5-5-2.243-5-5 2.243-5 5-5zm-1-8H7v5.518a8.957 8.957 0 0 1 4-1.459V2zm6 0h-4v4.059a8.957 8.957 0 0 1 4 1.459V2z">
+                            </path>
+                            <path
+                                d="m10.019 15.811-.468 2.726L12 17.25l2.449 1.287-.468-2.726 1.982-1.932-2.738-.398L12 11l-1.225 2.481-2.738.398z">
+                            </path>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="stats">
+                            <div id="lvl2">Acheivments</div>
+                            <div id="XP2"></div>
+                            <div></div>
+                        </div>
+                        <progress min="0" id="Progress2"></progress>
+                    </div>
+                </div>
+            </div>
+            <div class="grid">
+            </div>
+        </div>
+    </section>
+
+    <div id="blogs">
+        <div class="title-of-page">
+            BLOGS
+        </div>
+        <div id="blog-section">
+        </div>
+        <div class="scroll-handle" style="width: 100%; height:4%;text-align: center;font-size:2rem">
+            ...</div>
+    </div>
+    <div id="events">
+        <div class="title-of-page">
+            EVENTS
+        </div>
+        <div id="event-box">
+            <div class="event-clickable">
+                <div class="event-clickable-img"></div>
+                <div class="event-clickable-content">
+                    <h2>Welcome to our event Section : UOS</h2>
+                </div>
+            </div>
+            <div class="event">
+                <div class="event-img" style='background-image: url("./images/welcome.jpg")'></div>
+                <div class="event-content">
+                    <div>
+                        <h2>Bot Programming : Green Circle</h2>
+                        <div>
+                            <h3>5964 participants</h3>
+                            <h3>End date: June 27, 2022 at 1:00 PM</h3>
+                        </div>
+                    </div>
+                    <div>
+                        <p>There is nothing like a good old bot awesome graphics, crazy battles... Compete at your own
+                            level, or just practice for fun; AI programming IS for everyone!</p>
+                        <button>JOIN</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="scroll-handle" style="width: 100%; height:4%;text-align: center;font-size:2rem">
+            ...</div>
+    </div>
+    <footer>
+        <div class="logoD" href="#"><span>WOW</span>learn</div>
+        <div class="l2">
+            <a href="https://awaisoem.github.io/SPARK-OFFICIALS/" target="_blank">About Us</a>
+            <a href="#">Portfolio</a>
+            <a href="https://awaisoem.netlify.app/blogs.html" target="_blank">Blogs</a>
+            <a href="https://awaisoem.netlify.app/" target="_blank">Developer</a>
+        </div>
+        <div class="l3">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-whatsapp"></i></a>
+            <a href="#"><i class="fa fa-github"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+        </div>
+    </footer>
+    <script src="./langData.js"></script>
+    <script src="./data_and_shared_part.js"></script>
+    <script src="./script.js"></script>
+    <script src="./mainlogic.js"></script>
+</body>
+
+</html>

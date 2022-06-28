@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WOWLearn | </title>
+    <link rel="shortcut icon" href="./images/icons8-yellow-file-32.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./LandingStyle.css">
+    <style>
+
+    </style>
+
+    <script src="https://unpkg.com/boxicons@2.1.2/dist/boxicons.js"></script>
+</head>
+
+<body>
+    <nav>
+        <div class="logo" href="#"><span>WOW</span>learn</div>
+        <div id="ham" onclick="hamToggle(this)">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+        <div id="navlinks">
+            <a href="#hero" class="navlink active">Home</a>
+            <a href="#services" class="navlink">Services</a>
+            <a href="#contact" class="navlink">Contact</a>
+            <a onclick="OpenDashboard()" class="navlink"  style="box-shadow: none;cursor: pointer;">Dashboard</a>
+            <a onclick="showPopup1()" ><button id="navStartBtn" class="startBtn">Register</button></a>
+        </div>
+    </nav>
+    <div id="Sidelinks">
+        <a href="#hero" class="navlink active">Home</a>
+        <a href="#about" class="navlink">About</a>
+        <a href="#services" class="navlink">Services</a>
+        <a href="#testimonial" class="navlink">Testimonials</a>
+        <a href="#FAQ" class="navlink">FAQs</a>
+        <a href="#contact" class="navlink">Contact</a>
+        <a onclick="OpenDashboard()" class="navlink" style="box-shadow: none;cursor: pointer;">Dashboard</a>
+    </div>
+    <a id="backtotop" href="#">
+        <i class="fa fa-arrow-up"></i>
+    </a>
+    <div class="popup popup1" style="display: none">
+        <a onclick="closePopup1()" style="display: flex"><i class="fa-solid fa-xmark"></i></a>
+        <h1>Enter your name</h1>
+        <input type="text" placeholder="Name" id="UserName">
+        <a onclick="popupRegisterButton(this)" style="box-shadow:none;"><button>Register</button></a>
+        <a href="">Terms and Conditions</a>
+    </div>
+    <div class="popup popup2" style="display: none">
+        <a onclick="closePopup2()" style="display: flex"><i class="fa-solid fa-xmark"></i></a>
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAAFMUlEQVRoge2YW2wUVRzGv3OwSKhAoUVjIA360GjEso08mJQHxB0Igmk2aKBcGpSIyAPBahiwhKw4mCFQuRUUNApyawMFY+RiWqJGjTE2AR+MARN9kFBu3Uwh1q7d+X8+tLvd2Z1tC/Ri4n7JP5s5++3Z33fmnDNnF8gqq6yyyiqrrPpH+3ihKEzq3nyP1r5ShHBYA4AaeKy+aZ/7k03ApFInlcL8V9XUDj/fpLqXbYImgJMFTs78/0SADzp+tAmY8WuSdSuHP70g1Vd4dKmNJB+AuvsGA7An1UR/sF2K6WlUKE31TTxaYTPVB5QOaYBd0e8tgZigp9lRYCi5YcKhJRZcml4bHCUIDdkU2vH3txaBKk+jgiOuMipzpzXFmyZ8usSCYlXKxx1NZfxZcbBpSAJU//WNBYU0KEUxKnOfScA//OkiS6WGBBxCG80VB5uAIdiFttz+yhdeFAwzGX7/IgtIH3loMZorahO+QQ2w+fY5Cz4jCq298B+X+4aE0Ghe1g0PDGKATa0NvtNBSGN93swE1EMfzbdUCjwBR0OlwQODFOAd50tfeEClwftNG620LzwwCAHeds5aYCqUcqhcI5w3JwE1/sMXLUWfOyRi3FxR7wsPDHCAcOS0xTR4OEpghMcnwe+dZwEqfbche4QHBjDAhptfWPSZDkJtbEqCz39/Xvr0UnAA9AoPABoAwgzrdTdOFPVKFQ7rgppQr763rn9mx8StckWQKJeRDpEZHvg9IRuUKlKQVBFFzOgLPADo5dyb0369+DhFXVx77YSd0bl3ec64gp+PC3gxvyaU0bf22glbSFMoiBcpEVEM2g+WnU/A14RsCk0KkVQRN+YGb7xWfz5T/2kB8q6OPyTCkIhAhOaa5npfuHHRq4dACYEEKWb+zrI035rmeluEZmdfiYow5nrhd5Z1HsxIJFVERILOqs/7DA8A2qVb6lKQVGZl87E0OBKlyaMlpDl2e3eIyuZjtksxU/qKxIRBe8ILCaix28tsYerIS0TIO4bvDCCcK5QWzy0XMV+/UrfVE0Bic0m2kER3iZlnz962+kqtRRHPtBGKI4jNei8JfsyO5y1CTG8fdMRVs+4GHujahVZfPhwQ6kYA+R5opap3TVzwZvw6b9tzAcZ9BNgeQ0lxMaYESlK7dYQ0agrLEwtxzLY5Fpi+VQJitFae7tOCzRgAAFZePhzQgvQQUNW7Cxd6QkiMjYy6+SXFU1AcCKT26QDaAz+6erbvPq8U7gneEwAAVv5xOAAlaSEAVu+ZVJEIMXLjzKemBqZ8N7m4eESyKxaLRYcPHzatprCiG37L7PRzP+BoUUareW/wQNdzIK49jyy60MFY0KW0eBcj31jx+/7Emli8eGHo8Scnj0j2tEfbcebU6fsPHDlSHvc9sHmWJWRVyrpx3H6CBzI8iZf9dqBEa2kEMC7lrc1dr57fpv9Eo2g804jWtlYgR4Oq06eI1N+wEaEOtq07c1cL1k8ZjxJLL30S6AqRn8kDACRvnzt1li23nNHI6eEvHQWHikab2dAvIx9Xxm/cX/TSBRE32LnFushQjtKxGTdvOdM5DC0UQYZyGOt/eKAPh7mll/YFhL53wiFhHHxsRRMA5G4yMvoUtNG2vv/hgT6eRhde2h1QopLhHA2dgI8rNzw94Oru5wkBZ5gWo2391wMCD9zBcXrBLztLlNINAECKUfvEKt+FOHJjsEQgDQCgoY22DY39tmDvWeUXtxaEfq3pcVEDwKjw9IJR7z7bqy+rrLLKKqus/vf6F8N1ZVVAFxCRAAAAAElFTkSuQmCC">
+        <h1>Thanks For Contact Us</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt, eum nesciunt! Distinctio molestias repellat, quam fuga adipisci suscipit voluptates doloremque amet eaque laboriosam.</p>
+    </div>
+
+    <!-- absolute fixed ends -->
+    <main>
+        <div id="hero">
+            <h1>Start your Learning Journey With WOW Learn</h1>
+            <p>better plateform for learning makes it easy and faster to learn. Join us for lean any IT sector
+                technologies.</p>
+            <div>
+                <a onclick="OpenDashboard()"><button class="startBtn" id="mainHeroStartButton">Get Started</button></a>
+                <a href="#about"><button class="secondaryBtn">Learn More</button></a>
+            </div>
+            <div id="scroll-down-animation"><i class="fa fa-arrow-down"></i></div>
+        </div>
+        <div id="about">
+            <div>
+                <h1>Voluptatem dignissimos provident quasi corporis</h1>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                    ut<br>labore et dolore magna aliqua.
+                </p>
+                <ul>
+                    <li><i class="fa-solid fa-circle-check" style="color: #F2BB13"></i>
+                        Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
+                    <li><i class="fa-solid fa-circle-check" style="color: #F2BB13"></i> Duis aute irure dolor in
+                        reprehenderit in voluptate velit.</li>
+                    <li><i class="fa-solid fa-circle-check" style="color: #F2BB13"></i> Ullamco laboris nisi ut aliquip
+                        ex ea commodo consequat. Duis aute irure dolor in</li>
+                    <li><i class="fa-solid fa-circle-check" style="color: #F2BB13"></i> mastiro dolore eu fugiat nulla
+                        pariatur.</li>
+                    <li><i class="fa-solid fa-circle-check" style="color: #F2BB13"></i> reprehenderit in voluptate
+                        trideta storacalaperda mastiro</li>
+                </ul>
+            </div>
+            <img src="./images/learning_illustration.png" alt="">
+        </div>
+        <div id="services">
+            <h1 style="font-size:3rem;text-align: center;">Main Services and Languages</h1>
+            <div id="languages">
+            </div>
+        </div>
+        <div id="blogs">
+            <h1>our blogs</h1>
+            <p>every one can access to our technology and programming related blogs its free</p>
+            <div class="blog-section">
+
+                <div class="blog" id="skyBlog">
+                    <div class="blogicn">
+                        <i class="fa-brands fa-invision" style='font-size:48px;color:#2db6fa'></i>
+                    </div>
+                    <h1>Ledo Markt</h1>
+                    <p>
+                        Lorem ipsum, dolaut amet fugiat necanditiis reprehenderit consectetur quia placeat voluptatem ab
+                        cumque cum tenetur voluptatum ea, corporis harum error maxime consequatur. Necessitatibus harum
+                        nesciunt dignissimos voluptatum!
+                    </p>
+                    <a onclick="OpenDashboard()" style="box-shadow: none;cursor: pointer;">Read More →</a>
+                </div>
+                <div class="blog" id="greenBlog">
+                    <div class="blogicn">
+                        <i class="fa-brands fa-galactic-republic" style='font-size:48px;color:#08da4e'></i>
+                    </div>
+                    <h1>Ledo Markt</h1>
+                    <p>
+                        Lorem ipsum, dolaut amet fugiat necanditiis reprehenderit consectetur quia placeat voluptatem ab
+                        cumque cum tenetur voluptatum ea, corporis harum error maxime consequatur. Necessitatibus harum
+                        nesciunt dignissimos voluptatum!
+                    </p>
+                    <a onclick="OpenDashboard()" style="box-shadow: none;cursor: pointer;">Read More →</a>
+                </div>
+                <div class="blog" id="orangeBlog">
+                    <div class="blogicn">
+                        <i class="fa-brands fa-aws" style='font-size:48px;color:#f68c09'></i>
+                    </div>
+                    <h1>Ledo Markt</h1>
+                    <p>
+                        Lorem ipsum, dolaut amet fugiat necanditiis reprehenderit consectetur quia placeat voluptatem ab
+                        cumque cum tenetur voluptatum ea, corporis harum error maxime consequatur. Necessitatibus harum
+                        nesciunt dignissimos voluptatum!
+                    </p>
+                    <a onclick="OpenDashboard()" style="box-shadow: none;cursor: pointer;">Read More →</a>
+                </div>
+                <div class="blog" id="redBlog">
+                    <div class="blogicn">
+                        <i class="fa-solid fa-wand-magic-sparkles" style='font-size:48px;color:#e9222c'></i>
+                    </div>
+                    <h1>Ledo Markt</h1>
+                    <p>
+                        Lorem ipsum, dolaut amet fugiat necanditiis reprehenderit consectetur quia placeat voluptatem ab
+                        cumque cum tenetur voluptatum ea, corporis harum error maxime consequatur. Necessitatibus harum
+                        nesciunt dignissimos voluptatum!
+                    </p>
+                    <a onclick="OpenDashboard()" style="box-shadow: none;cursor: pointer;">Read More →</a>
+                </div>
+                <div class="blog" id="purpleBlog">
+                    <div class="blogicn">
+                        <i class="fa fa-camera" style='font-size:48px;color:#b50edf'></i>
+                    </div>
+                    <h1>Ledo Markt</h1>
+                    <p>
+                        Lorem ipsum, dolaut amet fugiat necanditiis reprehenderit consectetur quia placeat voluptatem ab
+                        cumque cum tenetur voluptatum ea, corporis harum error maxime consequatur. Necessitatibus harum
+                        nesciunt dignissimos voluptatum!
+                    </p>
+                    <a onclick="OpenDashboard()" style="box-shadow: none;cursor: pointer;">Read More →</a>
+                </div>
+                <div class="blog" id="pinkBlog">
+                    <div class="blogicn">
+                        <i class="fa-solid fa-franc-sign" style='font-size:48px;color:#f51f9c'></i>
+                    </div>
+                    <h1>Ledo Markt</h1>
+                    <p>
+                        Lorem ipsum, dolaut amet fugiat necanditiis reprehenderit consectetur quia placeat voluptatem ab
+                        cumque cum tenetur voluptatum ea, corporis harum error maxime consequatur. Necessitatibus harum
+                        nesciunt dignissimos voluptatum!
+                    </p>
+                    <a onclick="OpenDashboard()" style="box-shadow: none;cursor: pointer;">Read More →</a>
+                </div>
+            </div>
+            <a onclick="OpenDashboard()"><button class="startBtn">View More →</button></a>
+        </div>
+        <div id="community">
+            <h1>Our Communities</h1>
+            <div>
+                <div>
+                    <div>
+                        <i class="fa-solid fa-database"></i>
+                    </div>
+                    <div>
+                        <h3>Corporis voluptates sit</h3>
+                        <p>Consequuntur sunt aut quasi enim aliquam quae harum pariatur laboris nisi ut aliquip</p>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <i class="fa-solid fa-database"></i>
+                    </div>
+                    <div>
+                        <h3>Corporis voluptates sit</h3>
+                        <p>Consequuntur sunt aut quasi enim aliquam quae harum pariatur laboris nisi ut aliquip</p>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <i class="fa-solid fa-database"></i>
+                    </div>
+                    <div>
+                        <h3>Corporis voluptates sit</h3>
+                        <p>Consequuntur sunt aut quasi enim aliquam quae harum pariatur laboris nisi ut aliquip</p>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <i class="fa-solid fa-database"></i>
+                    </div>
+                    <div>
+                        <h3>Corporis voluptates sit</h3>
+                        <p>Consequuntur sunt aut quasi enim aliquam quae harum pariatur laboris nisi ut aliquip</p>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <i class="fa-solid fa-database"></i>
+                    </div>
+                    <div>
+                        <h3>Corporis voluptates sit</h3>
+                        <p>Consequuntur sunt aut quasi enim aliquam quae harum pariatur laboris nisi ut aliquip</p>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <i class="fa-solid fa-database"></i>
+                    </div>
+                    <div>
+                        <h3>Corporis voluptates sit</h3>
+                        <p>Consequuntur sunt aut quasi enim aliquam quae harum pariatur laboris nisi ut aliquip</p>
+                    </div>
+                </div>
+            </div>
+            <a onclick="OpenDashboard()"><button class="startBtn">Join Communities</button></a>
+        </div>
+        <div id="events">
+            <!-- implementations pending -->
+        </div>
+        <div id="testimonial">
+            <h1>Check <span>What The Users Say</span> About Our App</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eismod<br>tempor incididunt ut labore et
+                dolore magna.</p>
+            <div>
+                <div class="testimonial-name-list">
+                </div>
+                <div class="testimonial-show">
+                    <div>
+                        <img src="./images/quote.png" alt="" id="quote">
+                        <p id="testimonial-msg-show"></p>
+                    </div>
+                    <div id="testimonial-pic-show">
+                        <img src="./images/male_dummy.png" alt="">
+                        <div>
+                            <h3></h3>
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="FAQ">
+            <h1>faq</h1>
+            <p>frequently asked questions, get knowledge befere hand</p>
+            <div class="faq-section">
+            </div>
+        </div>
+        <div id="App-preview">
+            <img src="./images/phone-app.png" alt="">
+            <div>
+                <h1>Install Our App</h1>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quo odit maxime, et aut est voluptate neque voluptatum ea autem dolorem ratione explicabo.</p>
+                <button>Comming Soon......</button>
+            </div>
+        </div>
+        <div id="contact">
+            <h1>Support</h1>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                Aliquid mollitia ducimus provident?</p>
+            <div>
+                <div class="contact-info">
+                    <h1>100% Satisfaction Guaranteed</h1>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam alias optio minima, tempore
+                        architecto sint ipsam dolore tempora facere laboriosam corrupti!</p>
+                    <h3>What will be the next step?</h3>
+                    <ul>
+                        <li>→ We'll check if provided info is valid.</li>
+                        <li>→ We'll check your message.</li>
+                        <li>→ Discuss with our team.</li>
+                        <li>→ Someone from our team respond you back.</li>
+                    </ul>
+                </div>
+                <form onsubmit="contact_submit()" class="contact-form" action="./index.html#contact">
+                    <h3>Contact US</h3>
+                    <input type="text" id="nameInContact" placeholder="Enter Name...">
+                    <input type="email" name="" id="emailInContact" placeholder="Enter Email...">
+                    <textarea name="" id="textareaInContact" cols="30" rows="10"
+                        placeholder="Enter your message or testimonial..."></textarea>
+                    <input type="submit" value="Submit" id="contact-submit">
+                </form>
+            </div>
+        </div>
+        <footer>
+            <div class="footer-container">
+              <div class="contain1">
+                <div class="logo footer-logo" href="#"><span>WOW</span>learn</div>
+                <ul>
+                  <li>
+                    Street 5, Block 3, Sargodha Pakistan
+                 </li>
+                  <li>
+                    <a href="tel://+923059304887"><i class="fa-solid fa-phone" style="color: #F2BB13;padding-right: 10px;"></i>+923059304887</a><br>
+                    <a href=""><i class="fa-solid fa-paper-plane" style="color: #F2BB13;padding-right: 10px;"></i>wowlearnbyspark@gmail.com</a>
+                </li>
+                </ul>
+              </div>
+              <div class="contain2">
+                <h5 style="color:#F2BB13">Useful Links</h5>
+                <ul>
+                  <li><i class="fa-solid fa-angle-right" style="color:#F2BB13"></i><a href="https://awaisoem.netlify.app/"> Portfolio</a></li>
+                  <li><i class="fa-solid fa-angle-right" style="color:#F2BB13"></i><a href="https://awaisoem.github.io/SPARK-OFFICIALS/"> Our Team</a></li>
+                  <li><i class="fa-solid fa-angle-right" style="color:#F2BB13"></i><a href=""> Help</a></li>
+                  <li><i class="fa-solid fa-angle-right" style="color:#F2BB13"></i><a href=""> Terms of Service</a></li>
+                  <li><i class="fa-solid fa-angle-right" style="color:#F2BB13"></i><a href=""> privacy policy</a></li>
+                </ul>
+              </div>
+              <div class="contain2">
+                <h5 style="color:#F2BB13">Our Services</h5>
+                <ul>
+                  <li><i class="fa-solid fa-angle-right" style="color:#F2BB13"></i><a href=""> Contribute Code</a></li>
+                  <li><i class="fa-solid fa-angle-right" style="color:#F2BB13"></i><a href=""> Become TeamMember</a></li>
+                  <li><i class="fa-solid fa-angle-right" style="color:#F2BB13"></i><a href=""> Connect With US</a></li>
+                  <li><i class="fa-solid fa-angle-right" style="color:#F2BB13"></i><a href=""> Marketing</a></li>
+                  <li><i class="fa-solid fa-angle-right" style="color:#F2BB13"></i><a href=""> Other Softwares</a></li>
+                </ul>
+              </div>
+              <div class="contain3">
+                <h5 style="color:#F2BB13">Subscribe For Updates</h5>
+                <ul>
+                    <li class="news-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam quasi voluptatibus earum beatae</li>
+                    <li class="news-input">
+                            <input type="text" name="text" placeholder="Email..." id="Newsletter">
+                            <button class="sub-btn">Subscribe</button>
+                    </li>
+                    
+                </ul>
+              </div>
+              
+            </div>
+            <hr>
+            <div class="end">
+              <div class="para">
+                <p style="opacity:0.5">
+                  &copy; Copyright 2022 By <a href="https://awaisoem.github.io/SPARK-OFFICIALS/">@Spark</a>,All Rights Reserved
+                </p>
+              </div>
+              <div class="social-icons" style="display:flex;flex-flow:row nowrap;gap:14px;">
+                <span><a href="###"><i class="fa-brands fa-facebook"></i></a></span>
+                <span><a href="###"><i class="fa-brands fa-whatsapp"></i></a></span>
+                <span><a href="###"><i class="fa-brands fa-github"></i></a></span>
+                <span><a href="###"><i class="fa-brands fa-instagram"></i></a></span>
+              </div>
+            </div>
+          </footer>
+    </main>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <script src="./data_and_shared_part.js"></script>
+    <script src="./LandingScript.js"></script>
+</body>
+
+</html>
